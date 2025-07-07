@@ -37,13 +37,13 @@ public class SongService {
             case "tamil":
                 return song.getLinesTamil() != null && !song.getLinesTamil().isEmpty()
                         ? song.getLinesTamil()
-                        : List.of(new SongLine(null, "", "Tamil version is not available"));
+                        : List.of(new SongLine("", "Tamil version is not available"));
             case "tanglish":
                 return song.getLinesTanglish() != null && !song.getLinesTanglish().isEmpty()
                         ? song.getLinesTanglish()
-                        : List.of(new SongLine(null, "", "Tanglish version is not available"));
+                        : List.of(new SongLine( "", "Tanglish version is not available"));
             default:
-                return List.of(new SongLine(null, "", "Invalid language"));
+                return List.of(new SongLine("", "Invalid language"));
         }
     }
 
