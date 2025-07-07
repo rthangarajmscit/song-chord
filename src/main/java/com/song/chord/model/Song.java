@@ -1,65 +1,36 @@
 package com.song.chord.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.*;
-
+import lombok.Data;
 import java.util.List;
 
 @Entity
+@Data
 public class Song {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
 
-//    @ElementCollection
-//    private List<SongLine> lines;
-
-
-    //@OneToMany(mappedBy = "song", cascade = CascadeType.ALL, orphanRemoval = true)
-    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<SongLine> lines;
-    // Getters and Setters
-
-    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "song_id")
+    @ElementCollection
     private List<SongLine> linesTamil;
 
-    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tanglish_song_id")
+    @ElementCollection
     private List<SongLine> linesTanglish;
-
-    public List<SongLine> getLinesTamil() {
-        return linesTamil;
-    }
-
-    public void setLinesTamil(List<SongLine> linesTamil) {
-        this.linesTamil = linesTamil;
-    }
-
-    public List<SongLine> getLinesTanglish() {
-        return linesTanglish;
-    }
-
-    public void setLinesTanglish(List<SongLine> linesTanglish) {
-        this.linesTanglish = linesTanglish;
-    }
 
     public Song() {
     }
 
-    public Song(Long id, String title, List<SongLine> lines, List<SongLine> linesTamil, List<SongLine> linesTanglish) {
+    public Song(Long id, String title, List<SongLine> linesTamil, List<SongLine> linesTanglish) {
         this.id = id;
         this.title = title;
-        this.lines = lines;
         this.linesTamil = linesTamil;
         this.linesTanglish = linesTanglish;
-    }
-
-    public Song(Long id, String title, List<SongLine> lines) {
-        this.id = id;
-        this.title = title;
-        this.lines = lines;
     }
 
     public Long getId() {
@@ -78,14 +49,19 @@ public class Song {
         this.title = title;
     }
 
-    public List<SongLine> getLines() {
-        return lines;
+    public List<SongLine> getLinesTamil() {
+        return linesTamil;
     }
 
-    public void setLines(List<SongLine> lines) {
-        this.lines = lines;
+    public void setLinesTamil(List<SongLine> linesTamil) {
+        this.linesTamil = linesTamil;
+    }
+
+    public List<SongLine> getLinesTanglish() {
+        return linesTanglish;
+    }
+
+    public void setLinesTanglish(List<SongLine> linesTanglish) {
+        this.linesTanglish = linesTanglish;
     }
 }
-
-
-

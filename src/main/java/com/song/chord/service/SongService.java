@@ -1,9 +1,9 @@
 package com.song.chord.service;
 
-
-
 import com.song.chord.model.Song;
+import com.song.chord.model.SongLine;
 import com.song.chord.repository.SongRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +12,8 @@ import java.util.Optional;
 @Service
 public class SongService {
 
-    private final SongRepository songRepository;
-
-    public SongService(SongRepository songRepository) {
-        this.songRepository = songRepository;
-    }
+    @Autowired
+    private SongRepository songRepository;
 
     public List<Song> getAllSongs() {
         return songRepository.findAll();
@@ -27,15 +24,30 @@ public class SongService {
     }
 
     public Song saveSong(Song song) {
-        // Set the song reference in each line
-        if (song.getLines() != null) {
-            song.getLines().forEach(line -> line.setSong(song));
-        }
         return songRepository.save(song);
+    }
+
+    public List<SongLine> getLinesByLanguage(Long songId, String language) {
+        Optional<Song> optionalSong = songRepository.findById(songId);
+        if (optionalSong.isEmpty()) return null;
+
+        Song song = optionalSong.get();
+
+        switch (language.toLowerCase()) {
+            case "tamil":
+                return song.getLinesTamil() != null && !song.getLinesTamil().isEmpty()
+                        ? song.getLinesTamil()
+                        : List.of(new SongLine(null, "", "Tamil version is not available"));
+            case "tanglish":
+                return song.getLinesTanglish() != null && !song.getLinesTanglish().isEmpty()
+                        ? song.getLinesTanglish()
+                        : List.of(new SongLine(null, "", "Tanglish version is not available"));
+            default:
+                return List.of(new SongLine(null, "", "Invalid language"));
+        }
     }
 
     public void deleteSong(Long id) {
         songRepository.deleteById(id);
     }
 }
-
