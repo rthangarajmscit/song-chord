@@ -27,7 +27,11 @@ public class SongController {
     }
 
     @GetMapping("/all")
-    public List<Song> getAllSongsImpl() {
+    public List<SongDTO> getAllSongsImpl() {
+        return songServiceImpl.getAllSongs();
+    }
+    @GetMapping
+    public List<Song> getAllSongs() {
         return songService.getAllSongs();
     }
 
@@ -49,10 +53,7 @@ public class SongController {
 
 
 
-    @GetMapping
-    public List<SongDTO> getAllSongs() {
-        return songServiceImpl.getAllSongs();
-    }
+
 
 }
 
