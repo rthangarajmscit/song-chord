@@ -15,7 +15,11 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry
                         .addMapping("/**")
-                        .allowedOrigins("http://localhost:5173")
+                        .allowedOrigins(
+                                "http://localhost:5173",
+                                "https://rthangarajmscit.github.io", // for GitHub Pages frontend
+                                "https://song-chord-production.up.railway.app" // backend on Railway
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
