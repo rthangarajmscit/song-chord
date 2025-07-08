@@ -1,6 +1,11 @@
 com\song\chord\controller\SongController.class
+com\song\chord\dto\SongDTO.class
 com\song\chord\model\SongLine.class
+com\song\chord\impl\SongServiceImpl.class
 com\song\chord\ChordApplication.class
 com\song\chord\repository\SongRepository.class
+com\song\chord\CorsConfig$1.class
 com\song\chord\model\Song.class
+com\song\chord\dto\SongLineDTO.class
 com\song\chord\service\SongService.class
+com\song\chord\CorsConfig.class

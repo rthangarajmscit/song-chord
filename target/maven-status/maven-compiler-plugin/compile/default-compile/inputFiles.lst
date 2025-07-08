@@ -1,5 +1,9 @@
 D:\IntelliJWorkspace\chord\src\main\java\com\song\chord\ChordApplication.java
 D:\IntelliJWorkspace\chord\src\main\java\com\song\chord\controller\SongController.java
+D:\IntelliJWorkspace\chord\src\main\java\com\song\chord\CorsConfig.java
+D:\IntelliJWorkspace\chord\src\main\java\com\song\chord\dto\SongDTO.java
+D:\IntelliJWorkspace\chord\src\main\java\com\song\chord\dto\SongLineDTO.java
+D:\IntelliJWorkspace\chord\src\main\java\com\song\chord\impl\SongServiceImpl.java
 D:\IntelliJWorkspace\chord\src\main\java\com\song\chord\model\Song.java
 D:\IntelliJWorkspace\chord\src\main\java\com\song\chord\model\SongLine.java
 D:\IntelliJWorkspace\chord\src\main\java\com\song\chord\repository\SongRepository.java
